@@ -13,8 +13,8 @@ task default: :test
 namespace :bootstrap do
   desc "Update to a new version of Twitter Bootstrap"
   task :update do
-    bootstrap_version = "3.3.4"
-    striped_bootstrap_generators_version = "3.3.4"
+    bootstrap_version = "4.3.1"
+    striped_bootstrap_generators_version = "4.3.1"
 
     twitter_latest_dist_zip_url = "https://github.com/twbs/bootstrap/archive/v#{bootstrap_version}.zip"
     twitter_sass_lastest_dist_zip_url = "https://github.com/twbs/bootstrap-sass/archive/v#{bootstrap_version}.zip"
@@ -44,10 +44,6 @@ namespace :bootstrap do
       `unzip -d tmp tmp/sass-bootstrap.zip`
     end
 
-    # Reset Twitter Bootstrap JS files
-    bootstrap_javascript_dir = 'vendor/assets/javascripts/bootstrap'
-    bootstrap_main_javascript = 'vendor/assets/javascripts/bootstrap.js'
-
     FileUtils.rm Dir.glob("#{bootstrap_javascript_dir}/*.js")
     FileUtils.cp Dir.glob("#{twitter_bootstrap_dir}/js/*.js"), bootstrap_javascript_dir
 
@@ -63,19 +59,10 @@ namespace :bootstrap do
     FileUtils.rm Dir.glob("#{bootstrap_fonts_dir}/*")
     FileUtils.cp Dir.glob("#{twitter_bootstrap_dir}/fonts/*"), bootstrap_fonts_dir
 
-    # Reset Twitter Bootstrap CSS file
-    FileUtils.cp "#{twitter_bootstrap_dir}/dist/css/bootstrap.css", "vendor/assets/stylesheets/bootstrap.css.erb"
-    FileUtils.cp "#{twitter_bootstrap_dir}/dist/css/bootstrap.css.map", "vendor/assets/stylesheets/bootstrap.css.map"
-
-    # Reset Twitter Bootstrap LESS files
-    bootstrap_less_dir = 'vendor/twitter/bootstrap/less'
 
     FileUtils.rm Dir.glob("#{bootstrap_less_dir}/**/*.less")
     FileUtils.cp Dir.glob("#{twitter_bootstrap_dir}/less/*.less"), bootstrap_less_dir
     FileUtils.cp Dir.glob("#{twitter_bootstrap_dir}/less/mixins/*.less"), "#{bootstrap_less_dir}/mixins"
-
-    # Reset Twitter Bootstrap SASS files
-    bootstrap_sass_dir = 'vendor/twitter/bootstrap/sass'
 
     FileUtils.rm Dir.glob("#{bootstrap_sass_dir}/**/*.scss")
     FileUtils.cp Dir.glob("#{twitter_sass_bootstrap_dir}/assets/stylesheets/*.scss"), bootstrap_sass_dir
