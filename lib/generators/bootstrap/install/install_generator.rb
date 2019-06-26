@@ -25,7 +25,7 @@ module Bootstrap
       def create_stylesheets
         stylesheet_extension = options[:stylesheet_engine] || 'css'
 
-        copy_file "assets/stylesheets/starter.#{stylesheet_extension}", "app/assets/stylesheets/bootstrap-generators.#{stylesheet_extension}"
+        # copy_file "assets/stylesheets/starter.#{stylesheet_extension}", "app/assets/stylesheets/bootstrap-generators.#{stylesheet_extension}"
 
         if [:less, :scss].include?(options[:stylesheet_engine].to_sym)
           copy_file "assets/stylesheets/bootstrap-variables.#{stylesheet_extension}", "app/assets/stylesheets/bootstrap-variables.#{stylesheet_extension}"
