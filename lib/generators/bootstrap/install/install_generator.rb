@@ -37,10 +37,15 @@ module Bootstrap
 
         if ::File.exists?(::File.join(destination_root, application_js_path))
           inject_into_file application_js_path, before: '//= require_tree' do
-            "//= require bootstrap\n"
+            "//= require jquery3\n"
+            "//= require popper\n"
+            "//= require bootstrap-sprockets\n"
+            # "//= require bootstrap\n"
           end
         end
       end
     end
   end
 end
+
+
